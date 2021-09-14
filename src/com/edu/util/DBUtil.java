@@ -11,12 +11,13 @@ public class DBUtil {
 //	public static String driver = "com.mysql.cj.jdbc.Driver";
 //	public static String url = "jdbc:mysql://localhost:3306/userDB?serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8";
 	public static String driver = "oracle.jdbc.driver.OracleDriver";
-	public static String url = "jdbc:oracle:asdf:@localhost:1521:xe";
-	public static String id = "asdf";
-	public static String pw = "asdf";
+	public static String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	public static String id = "apple";
+	public static String pw = "1234";
 	static {
 		try {
 			Class.forName(driver); // oracle로 바꾸고
+			System.out.println("DB 로딩 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("DB 로딩 실패");

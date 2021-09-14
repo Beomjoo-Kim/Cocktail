@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -29,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.edu.service.CocktailService;
 import com.edu.service.CocktailServiceImpl;
+import com.edu.util.ImageUtil;
 import com.edu.vo.Cocktail;
 import com.edu.vo.CocktailException;
 import com.edu.vo.CocktailPageBean;
@@ -95,6 +95,7 @@ public class CocktailInfoView{
 				showCockInfo(cid);
 				
 			}catch(CocktailException ue){
+				ue.printStackTrace();
 			}
 			
 		}
@@ -104,18 +105,22 @@ public class CocktailInfoView{
 
 	private void showCockInfo(int cid) {
 		curCocktail = cocktailService.search(cid);
-		
 		cocktailInfoL[0].setText(curCocktail.getCname());
 		cocktailInfoL[1].setText(curCocktail.getBase());
 		cocktailInfoL[2].setText(curCocktail.getMaterial());
 		
+		System.out.println(curCocktail.toString());
+		
 		BufferedImage img = null;
-		try {                
-			img = ImageIO.read(new URL(curCocktail.getImageURL()));
+		try {
+			if(curCocktail.getImageURL()!=null) {
+				img = ImageIO.read(new URL(curCocktail.getImageURL()));
+			}
          } catch (IOException ex) {
         	 ex.printStackTrace();
          }
-		img = (BufferedImage) img.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+//		img = (BufferedImage) img.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+		img = ImageUtil.toBufferedImage(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
 		imgL.setIcon(new ImageIcon(img));
 	}
 	public CocktailInfoView(){
@@ -130,7 +135,7 @@ public class CocktailInfoView{
 		frame.setSize(1000, 400);
 		frame.setResizable(false);
 		frame.setVisible(true);
-		showCockInfo(1);
+//		showCockInfo(1);
 		showCocktails();
 	}
 

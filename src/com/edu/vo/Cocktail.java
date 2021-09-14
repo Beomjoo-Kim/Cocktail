@@ -11,6 +11,8 @@ public class Cocktail {
 	protected String material;
 	protected String imageURL;
 	
+	
+	//CID, CNAME, BASE, DEGREE, DESCRIPTION, METHOD, MATERIAL, IMAGEURL
 	public Cocktail() {
 	}
 	public Cocktail(int cid, String cname, String base, int degree, String description, String method, String material,

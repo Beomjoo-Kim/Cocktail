@@ -6,6 +6,7 @@ import com.edu.vo.Cocktail;
 import com.edu.vo.CocktailPageBean;
 
 public interface CocktailDao {
+	
 	/**
 	 * 칵테일 정보를 xml 파일에서 로딩 
 	 */
@@ -14,13 +15,13 @@ public interface CocktailDao {
 	 * 검색 조건(key) 검색 단어(word)에 해당하는 칵테일 정보를  검색해서 리턴 
 	 * @param bean 검색 조건과 검색 단어가 있는 객체
 	 * @return 조회한 칵테일 목록
-	 */
+	 */	
 	public List<Cocktail> searchAll(CocktailPageBean bean);
 	/**
 	 * 칵테일 코드에 해당하는 칵테일 정보를 검색해서 리턴 
 	 * @param cid 검색할 칵테일 코드
 	 * @return	식품 코드에 해당하는 칵테일 정보, 없으면 null이 리턴됨
-	 */
+	 */	
 	public Cocktail search(int cid);
 	
 	/**
